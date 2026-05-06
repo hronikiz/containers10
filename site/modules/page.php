@@ -4,16 +4,16 @@ class Page {
     private $template;
 
     public function __construct($template) {
-        $this->template = file_get_contents($template);
+        $this->template = $template;
     }
 
     public function Render($data) {
-        $output = $this->template;
+        $html = file_get_contents($this->template);
 
         foreach ($data as $key => $value) {
-            $output = str_replace("{{".$key."}}", $value, $output);
+            $html = str_replace("{{".$key."}}", $value, $html);
         }
 
-        return $output;
+        return $html;
     }
 }
